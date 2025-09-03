@@ -1,7 +1,7 @@
 # Securly Python bypass
 This is a tool that you can use to run python on school computers without using a .exe file which is blocked in some school districts.
 - Download the zip file
-  - You can also just run this command `curl -L -o Python.zip https://github.com/s-rayyan/securly-python-bypass/raw/main/Python.zip`
+  - You can also just run this command `curl -L -o Python.zip https://github.com/s-rayyan/securly-python/raw/main/Python.zip`
 - Unzip the zip file
   - You can either do this via the file explorer or by running `unzip python.zip`  
 - Open powershell
