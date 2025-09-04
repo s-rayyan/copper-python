@@ -7,9 +7,8 @@ This is a tool that you can use to run python on school computers without using 
 - Open powershell
   - It's an app, open the start menu and search for it 
 - Cd into the folder
-  - The folder is likely in C:\Users\[your username]\Downloads\Python
+  - The folder is likely in C:\Users\[your username]\Downloads\Python or C:\Users\[your username]
   - You can cd into the folder by typing `cd Downloads` or `cd Python`
-  - You know you've done it when the prompt says `C:\Users\[your username]\Downloads\Python`
 - Run `./python_runner.ps1 C:\Users\username\path\to\file.py`
   - Replace `path\to\file.py` with the path of your python file
 
