@@ -34,7 +34,7 @@ if ([string]::IsNullOrEmpty($pythonFile)) {
     while ($true) {
 	$line = @"
 import sys
-sys.path.append(r"$HOME\copper-python\lib")
+sys.path.append(r"$HOME\copper-python-main\lib")
 
 "@
         $line += Read-Host "py>>> "
