@@ -57,9 +57,7 @@ else {
 import sys
 sys.path.append(r"$HOME\copper-python-main\lib")
 
-
 "@
-echo $code
-    $code += Get-Content $pythonFile -Raw
+    $code += Get-Content $pythonFile -Raw -Encoding UTF8
     $engine.Execute($code, $scope)
 }
