@@ -55,7 +55,7 @@ sys.path.append(r"$HOME\copper-python-main\lib")
 else {
     $code = @"
 import sys
-sys.path.append(r"$HOME\copper-python\lib")
+sys.path.append(r"$HOME\copper-python-main\lib")
 
 
 "@
