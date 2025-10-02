@@ -54,3 +54,7 @@ Not functional yet. Use the C# alternative:
 ```csharp
 Console.Write("Enter: ")
 var input = Console.ReadLine()
+```
+
+### Misc
+Check out my Bitcoin Miner game, I made it with this project in mind, it only works with CopperPython [Bitcoin Miner](https://github.com/s-rayyan/bitcoin-miner).
