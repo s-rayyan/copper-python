@@ -1,14 +1,56 @@
-# Securly Python bypass
-This is a tool that you can use to run python on school computers without using a .exe file which is blocked in some school districts.
-- Download the download script
-- Open downloads in your browser `Ctrl+J`
-- If you get a this file could damage your device warning press `keep`
-- Press `Open File`
-- It will open a command prompt window and do things in there, this means it is working, dont close it
-- After it automatically closes, open powershell and now you can use the python command
+# CopperPython — Secure Python Bypass  
 
-This is not CPython the normal version of python that you may be used to, this is a version of IronPython.
-Though most features work, a lot of features are missing, in the actual IronPython there is no print function or an input function, I had to code them manually, the print function isn't perfect yet, I'll include more details.
+A tool to run Python on restricted school computers without using `.exe` files, useful where executables are blocked.  
 
+---
 
+## Download & Setup  
 
+1. Download the setup script.  
+2. Open your downloads in your browser (`Ctrl+J`).  
+3. If warned that the file “could harm your device,” click **Keep**.  
+4. Click **Open File**.  
+5. A Command Prompt window will open and run automatically — **do not close it** until it finishes.  
+6. Once closed, open PowerShell — now you can use the `python` command.  
+
+---
+
+## About CopperPython  
+
+This is **IronPython-based**, not standard CPython. Many core features work, but some are missing. For example, `print()` and `input()` are manually implemented and limited.  
+
+---
+
+## Disclaimer  
+
+Use at your own risk. I am not responsible for any consequences from your school or district. As a fellow student, here’s a useful excuse I’ve used: *"It’s just a coding thing."*  
+
+---
+
+## Key Differences from CPython  
+
+- **C# module support** in CopperPython.  
+- Missing some standard Python features.  
+
+### Print Function  
+
+Still in development. Works differently: no `end` parameter, no optional arguments, and requires at least one parameter.  
+
+**Works:**  
+- `print("Hello World")`  
+- `print("Hello" + " World")`  
+- `print(3)`  
+- `print(3.14)`  
+- `print("")`  
+
+**Doesn’t work:**  
+- `print()`  
+- `print("Hello", "World")`  
+- `print("Hello", end="")` → Use `Console.Write("")` instead.  
+
+### Input Function  
+
+Not functional yet. Use the C# alternative:  
+```csharp
+Console.Write("Enter: ")
+var input = Console.ReadLine()
