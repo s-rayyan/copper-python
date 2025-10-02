@@ -2,7 +2,9 @@
     [Parameter(Position = 0)]
     [string]$pythonFile
 )
+
 $ironPath = "$HOME\copper-python-main\net462"
+
 # Load IronPython DLLs
 Add-Type -Path "$ironPath\IronPython.dll"
 Add-Type -Path "$ironPath\IronPython.Modules.dll"
@@ -25,32 +27,72 @@ $ps_print = [Action[object]] {
     Write-Host $msg
 }
 
-
-
 # Inject them
 $scope.SetVariable("input", $ps_input)
 $scope.SetVariable("print", $ps_print)
+function Check-Syntax {
+    param([string]$code)
+
+    try {
+        $source = $engine.CreateScriptSourceFromString($code)
+        $source.Compile()
+        return $true
+    }
+    catch [Microsoft.Scripting.SyntaxErrorException] {
+        $msg = $_.Exception.Message
+        $lineNumber = $_.Exception.Line
+        $column = $_.Exception.Column
+
+        if (-not $lineNumber -and $msg -match "line (\d+)") {
+            $lineNumber = $matches[1]
+        }
+
+        Write-Host "Syntax error on line ${lineNumber}: $msg" -ForegroundColor Red
+
+        # Show offending line if possible
+        if ($lineNumber) {
+            $lines = $code -split "`n"
+            if ($lineNumber -le $lines.Length) {
+                $errorLine = $lines[$lineNumber - 1]
+                Write-Host $errorLine -ForegroundColor Yellow
+                if ($column) {
+                    $pointer = " " * ($column - 1) + "^"
+                    Write-Host $pointer -ForegroundColor Cyan
+                }
+            }
+        }
+
+        return $false
+    }
+    catch {
+        Write-Host "Error: $($_.Exception.Message)" -ForegroundColor Red
+        return $false
+    }
+}
 
 if ([string]::IsNullOrEmpty($pythonFile)) {
     Write-Host "IronPython Interactive Shell (type 'exit()' to quit)"
     while ($true) {
-	$line = @"
+        $line = @"
 import sys
 sys.path.append(r"$HOME\copper-python-main\lib")
-
 "@
         $line += Read-Host "py>>> "
+
         if ($line -eq "exit()" -or $line -eq "quit()") {
             break
         }
-        try {
-            $engine.Execute($line, $scope)
-        }
-        catch [IronPython.Runtime.SystemExit] {
-            break
-        }
-        catch {
-            Write-Host ("Error: " + $_.Exception.Message)
+
+        if (Check-Syntax $line) {
+            try {
+                $engine.Execute($line, $scope)
+            }
+            catch [IronPython.Runtime.SystemExit] {
+                break
+            }
+            catch {
+                Write-Host ("Error: " + $_.Exception.Message) -ForegroundColor Red
+            }
         }
     }
 }
@@ -61,5 +103,8 @@ sys.path.append(r"$HOME\copper-python-main\lib")
 
 "@
     $code += Get-Content $pythonFile -Raw -Encoding UTF8
-    $engine.Execute($code, $scope)
+
+    if (Check-Syntax $code) {
+        $engine.Execute($code, $scope)
+    }
 }
