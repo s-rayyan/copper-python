@@ -4,9 +4,10 @@ curl -L -o Python.zip https://github.com/s-rayyan/copper-python/archive/refs/hea
 powershell -NoProfile -Command "Expand-Archive -Path 'Python.zip' -DestinationPath $env:HOMEPATH -Force"
 
 del Python.zip
-mkdir %HOMEPATH%\Documents\WindowsPowerShell
+mkdir %HOMEPATH%\Documents\WindowsPowerShell\
 powershell
 if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force };
-Add-Content -Path $PROFILE -Value 'function python { & `$HOME\copper-python-main\python.ps1 @args` }'
+Add-Content -Path $PROFILE -Value 'function python { & "$HOME\copper-python-main\python.ps1" @args }'
+
 
 
