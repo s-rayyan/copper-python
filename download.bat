@@ -5,7 +5,6 @@ powershell -NoProfile -Command "Expand-Archive -Path 'Python.zip' -DestinationPa
 
 del Python.zip
 mkdir %HOME%\Documents\WindowsPowerShell
-powershell -NoProfile -Command ^
-"if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force }; ^
-Add-Content -Path $PROFILE -Value 'function python { & `$HOME\copper-python-main\python.ps1 @args }'"
-
+powershell
+if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force };
+Add-Content -Path $PROFILE -Value 'function python { & `$HOME\copper-python-main\python.ps1 @args }'
