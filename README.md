@@ -6,12 +6,13 @@ A tool to run Python on restricted school computers without using `.exe` files, 
 
 ## Download & Setup  
 
-1. Download the setup script.  
-2. Open your downloads in your browser (`Ctrl+J`).  
-3. If warned that the file “could harm your device,” click **Keep**.  
-4. Click **Open File**.  
-5. A Command Prompt window will open and run automatically — **do not close it** until it finishes.  
-6. Once closed, open PowerShell — now you can use the `python` command.  
+1. Open powershell and run `Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Bypass`
+2. Download the setup script.  
+3. Open your downloads in your browser (`Ctrl+J`).  
+4. If warned that the file “could harm your device,” click **Keep**.  
+5. Click **Open File**.  
+6. A Command Prompt window will open and run automatically — **do not close it** until it finishes.  
+7. Once closed, open PowerShell — now you can use the `python` command.  
 
 ---
 
