@@ -7,5 +7,6 @@ del Python.zip
 mkdir %HOMEPATH%\Documents\WindowsPowerShell
 powershell
 if (!(Test-Path $PROFILE)) { New-Item -ItemType File -Path $PROFILE -Force };
-Add-Content -Path $PROFILE -Value 'function python { & `$HOME\copper-python-main\python.ps1 @args }'
+Add-Content -Path $PROFILE -Value 'function python { & `$HOME\copper-python-main\python.ps1 @args` }'
+
 
