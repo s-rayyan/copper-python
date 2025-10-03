@@ -1,4 +1,4 @@
-# CopperPython — Secure Python Bypass  
+# CopperPython — Securly Python Bypass  
 
 A tool to run Python on restricted school computers without using `.exe` files, useful where executables are blocked.  
 
